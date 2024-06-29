@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
+final showLocationIconNotifier = ValueNotifier<bool>(false);
+
 class AnimatedLocationPinWidget extends StatefulWidget {
   const AnimatedLocationPinWidget(
       {super.key, required this.duration, required this.text});
@@ -32,11 +34,17 @@ class _AnimatedLocationPinWidgetState extends State<AnimatedLocationPinWidget>
         containerWidth = 80.0;
         opacity = 1.0;
       });
-      await Future.delayed(const Duration(milliseconds: 1500));
-      setState(() {
-        containerWidth = 50.0;
-        showLocationIcon = true;
+      showLocationIconNotifier.addListener(() {
+        setState(() {
+          containerWidth = 50.0;
+          showLocationIcon = true;
+        });
       });
+      // await Future.delayed(const Duration(milliseconds: 1500));
+      // setState(() {
+      //   containerWidth = 50.0;
+      //   showLocationIcon = true;
+      // });
     });
   }
 

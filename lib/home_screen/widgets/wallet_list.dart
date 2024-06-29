@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class WalletListWidget extends StatefulWidget {
-  const WalletListWidget({Key? key}) : super(key: key);
+  const WalletListWidget({super.key,this.onTap});
+
+  final VoidCallback? onTap;
 
   @override
   _WalletListWidgetState createState() => _WalletListWidgetState();
@@ -22,43 +24,48 @@ class _WalletListWidgetState extends State<WalletListWidget> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TextIconWidget(
+          const TextIconWidget(
             text: "Cosy areas",
             icon: Icon(
               Icons.shield_outlined,
               color: Colors.white,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: Dimensions.padding_8,
           ),
-          TextIconWidget(
+          const TextIconWidget(
             text: "Price",
             icon: Icon(
               Icons.wallet_outlined,
               color: Colors.white,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: Dimensions.padding_8,
           ),
-          TextIconWidget(
+          const TextIconWidget(
             text: "Infrastructure",
             icon: Icon(
               Icons.shopping_basket_outlined,
               color: Colors.white,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: Dimensions.padding_8,
           ),
-          TextIconWidget(
-            text: "Without any layer",
-            icon: SvgPicture.asset(
-              "assets/images/ic_stack.svg",
-              height: Dimensions.padding_18,
-              width: Dimensions.padding_18,
-              color: Colors.white,
+          GestureDetector(
+            onTap: (){
+              widget.onTap?.call();
+            },
+            child: TextIconWidget(
+              text: "Without any layer",
+              icon: SvgPicture.asset(
+                "assets/images/ic_stack.svg",
+                height: Dimensions.padding_18,
+                width: Dimensions.padding_18,
+                color: Colors.white,
+              ),
             ),
           ),
         ],
@@ -79,7 +86,7 @@ class TextIconWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         icon,
-        SizedBox(
+        const SizedBox(
           width: Dimensions.padding_8,
         ),
         Text(

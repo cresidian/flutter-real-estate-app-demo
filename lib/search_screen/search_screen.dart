@@ -1,4 +1,6 @@
 import 'package:design_system/design_system.dart';
+import 'package:design_system/theme/theme.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:real_estate_app_demo/drawables.dart';
 import 'package:real_estate_app_demo/home_screen/widgets/wallet_list.dart';
@@ -16,13 +18,14 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  bool _isVisible = false;
-  
+  bool _togglePopUpMenu = false;
+
   void _toggleVisibility() {
     setState(() {
-      _isVisible = !_isVisible;
+      _togglePopUpMenu = !_togglePopUpMenu;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -30,7 +33,9 @@ class _SearchScreenState extends State<SearchScreen> {
       children: [
         const GoogleMapsImageWidget(),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: Dimensions.materialPadding, vertical: Dimensions.materialPadding_3x),
+          padding: const EdgeInsets.symmetric(
+              horizontal: Dimensions.materialPadding,
+              vertical: Dimensions.materialPadding_3x),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
@@ -50,17 +55,10 @@ class _SearchScreenState extends State<SearchScreen> {
             ],
           ),
         ),
-        Visibility(
-          visible: _isVisible,
-          child: const Positioned(
-              bottom: 230,
-              left: Dimensions.materialPadding,
-              right: Dimensions.materialPadding,child: WalletListWidget()),
-        ),
         Positioned(
           left: Dimensions.materialPadding,
-          right: Dimensions.padding_139,
-          bottom: 90,
+          right: Dimensions.materialPadding,
+          bottom: Dimensions.padding_100,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -129,7 +127,8 @@ class _SearchScreenState extends State<SearchScreen> {
             bottom: 270,
             left: 100,
             child: AnimatedLocationPinWidget(
-              duration: 3900, text: "13,3 mn",
+              duration: 3900,
+              text: "13,3 mn",
             )),
         const Positioned(
             bottom: 200,
@@ -138,7 +137,31 @@ class _SearchScreenState extends State<SearchScreen> {
               duration: 4100,
               text: "6,95 mn",
             )),
+        Positioned(
+          bottom: 230,
+          left: Dimensions.materialPadding,
+          child: UnconstrainedBox(
+            child: AnimatedOpacity(
+              duration: const Duration(milliseconds: 200),
+              opacity: _togglePopUpMenu ? 1.0 : 0,
+              child:  WalletListWidget(
+                onTap: () {
+                  setState(() {
+                    _togglePopUpMenu=false;
+                  });
+                  showLocationIconNotifier.value=true;
+                },
+              ),
+            ),
+          ),
+        ),
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    showLocationIconNotifier.value=false;
+    super.dispose();
   }
 }
