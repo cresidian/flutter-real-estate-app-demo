@@ -40,11 +40,6 @@ class _AnimatedLocationPinWidgetState extends State<AnimatedLocationPinWidget>
           showLocationIcon = true;
         });
       });
-      // await Future.delayed(const Duration(milliseconds: 1500));
-      // setState(() {
-      //   containerWidth = 50.0;
-      //   showLocationIcon = true;
-      // });
     });
   }
 

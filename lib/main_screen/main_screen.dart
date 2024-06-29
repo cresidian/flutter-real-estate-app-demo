@@ -18,6 +18,19 @@ class _MainScreenState extends State<MainScreen> {
   ];
   int tabIndex = 1;
 
+  bool showNavBar = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await Future.delayed(const Duration(milliseconds: 1000));
+      setState(() {
+        showNavBar = true;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,20 +38,29 @@ class _MainScreenState extends State<MainScreen> {
         alignment: Alignment.bottomCenter,
         children: [
           mainScreenTabs[tabIndex],
-          Padding(
-            padding: const EdgeInsets.only(
-              bottom: Dimensions.materialPadding,
-            ),
-            child: CustomBottomNavBar(
-              onTabChanged: (index) {
-                setState(() {
-                  if (index == 0) {
-                    tabIndex = index;
-                  } else if (index == 2) {
-                    tabIndex = 1;
-                  }
-                });
-              },
+          AnimatedPositioned(
+            duration: const Duration(seconds: 1),
+            curve: Curves.easeInOut,
+            bottom: showNavBar ? 0 : -200,
+            left: 0,
+            right: 0,
+            child: Padding(
+              padding: const EdgeInsets.only(
+                bottom: Dimensions.materialPadding,
+              ),
+              child: UnconstrainedBox(
+                child: CustomBottomNavBar(
+                  onTabChanged: (index) {
+                    setState(() {
+                      if (index == 0) {
+                        tabIndex = index;
+                      } else if (index == 2) {
+                        tabIndex = 1;
+                      }
+                    });
+                  },
+                ),
+              ),
             ),
           )
         ],
