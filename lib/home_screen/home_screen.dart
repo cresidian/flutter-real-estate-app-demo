@@ -17,93 +17,82 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  context.colors.auxiliary100,
-                  context.colors.secondary,
-                ],
-              ),
-            ),
-            child: CustomScrollView(
-              slivers: [
-                SliverAppBar(
-                  title: const HomeAppBarLocationWidget(),
-                  forceMaterialTransparency: true,
-                  pinned: true,
-                  flexibleSpace: Padding(
-                    padding: const EdgeInsets.only(
-                      right: Dimensions.materialPadding,
-                      left: Dimensions.materialPadding,
-                      top: Dimensions.padding_100,
-                    ),
-                    child: _buildGreetingsWidget(),
-                  ),
-                  expandedHeight: 200,
-                ),
-                SliverList.list(
-                  children: [
-                    const HomeStatsWidget(),
-                    const SizedBox(
-                      height: Dimensions.padding_12,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                          color: context.colors.white,
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            topRight: Radius.circular(20),
-                          )),
-                      margin: const EdgeInsets.only(
-                        top: Dimensions.materialPadding,
-                      ),
-                      padding: const EdgeInsets.all(
-                        Dimensions.padding_6,
-                      ),
-                      child: const HomeHorizontalListViewItem(),
-                    ),
-                    Expanded(
-                      child: Container(
-                        color: context.colors.white,
-                        child: GridView.count(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: Dimensions.padding_6,
-                          ),
-                          crossAxisCount: 2,
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          mainAxisSpacing: Dimensions.padding_8,
-                          crossAxisSpacing: Dimensions.padding_8,
-                          children: <Widget>[
-                            ...List.generate(8, (index) {
-                              return HomeGridViewItem(dummyProperties[index]);
-                            })
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
-                ),
+    return  Stack(
+      alignment: Alignment.bottomCenter,
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                context.colors.auxiliary100,
+                context.colors.secondary,
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(
-              bottom: Dimensions.materialPadding,
-            ),
-            child: CustomBottomNavBar(
-              onTabChanged: (index) {},
-            ),
-          )
-        ],
-      ),
+          child: CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                title: const HomeAppBarLocationWidget(),
+                forceMaterialTransparency: true,
+                pinned: true,
+                flexibleSpace: Padding(
+                  padding: const EdgeInsets.only(
+                    right: Dimensions.materialPadding,
+                    left: Dimensions.materialPadding,
+                    top: Dimensions.padding_100,
+                  ),
+                  child: _buildGreetingsWidget(),
+                ),
+                expandedHeight: 200,
+              ),
+              SliverList.list(
+                children: [
+                  const HomeStatsWidget(),
+                  const SizedBox(
+                    height: Dimensions.padding_12,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        color: context.colors.white,
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                        )),
+                    margin: const EdgeInsets.only(
+                      top: Dimensions.materialPadding,
+                    ),
+                    padding: const EdgeInsets.all(
+                      Dimensions.padding_6,
+                    ),
+                    child: const HomeHorizontalListViewItem(),
+                  ),
+                  Container(
+                    color: context.colors.white,
+                    child: GridView.count(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: Dimensions.padding_6,
+                      ),
+                      crossAxisCount: 2,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      mainAxisSpacing: Dimensions.padding_8,
+                      crossAxisSpacing: Dimensions.padding_8,
+                      children: <Widget>[
+                        ...List.generate(8, (index) {
+                          return HomeGridViewItem(dummyProperties[index]);
+                        })
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ],
+          ),
+        ),
+
+      ],
     );
   }
 

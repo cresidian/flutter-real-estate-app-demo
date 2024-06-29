@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:design_system/design_system.dart';
-import 'package:real_estate_app_demo/drawables.dart';
 import 'package:real_estate_app_demo/property.dart';
 
 class HomeGridViewItem extends StatelessWidget {
