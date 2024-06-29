@@ -1,15 +1,12 @@
 import 'package:design_system/design_system.dart';
-import 'package:design_system/theme/constants/dimens.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:real_estate_app_demo/drawables.dart';
 import 'package:real_estate_app_demo/home_screen/widgets/wallet_list.dart';
-import 'package:real_estate_app_demo/search_screen/widgets/Search_text_field_widget.dart';
+import 'package:real_estate_app_demo/search_screen/widgets/search_text_field_widget.dart';
 import 'package:real_estate_app_demo/search_screen/widgets/animated_location_widget.dart';
 import 'package:real_estate_app_demo/search_screen/widgets/filled_icon_widget.dart';
 import 'package:real_estate_app_demo/search_screen/widgets/google_maps_image_widget.dart';
 import 'package:real_estate_app_demo/search_screen/widgets/icon_container_widget.dart';
-
-import '../core/app/resources/strings.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -76,7 +73,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     onTap: _toggleVisibility,
                     child: IconContainerWidget(
                         icon: SvgPicture.asset(
-                          "assets/images/stack.svg",
+                          Drawables.stack,
                           height: Dimensions.padding_22,
                           width: Dimensions.padding_22,
                           color: Colors.white,

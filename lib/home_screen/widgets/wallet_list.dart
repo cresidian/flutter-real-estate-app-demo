@@ -55,7 +55,7 @@ class _WalletListWidgetState extends State<WalletListWidget> {
           TextIconWidget(
             text: "Without any layer",
             icon: SvgPicture.asset(
-              "assets/images/stack.svg",
+              "assets/images/ic_stack.svg",
               height: Dimensions.padding_18,
               width: Dimensions.padding_18,
               color: Colors.white,

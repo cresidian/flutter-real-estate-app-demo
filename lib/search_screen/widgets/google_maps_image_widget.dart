@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:real_estate_app_demo/drawables.dart';
 
 class GoogleMapsImageWidget extends StatelessWidget {
   const GoogleMapsImageWidget({super.key});
@@ -12,7 +13,7 @@ class GoogleMapsImageWidget extends StatelessWidget {
           color: Colors.black,
           image: DecorationImage(
               image: AssetImage(
-                "assets/images/google_maps_with_name.jpg",
+                Drawables.googleMapsBg,
               ),
               fit: BoxFit.cover)),
     );
